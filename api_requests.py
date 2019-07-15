@@ -159,7 +159,7 @@ class Player(object):
     @staticmethod
     def get_player(name=None, region=None, id=None):
         if id is None and name is not None and region is not None:
-            path = url_base + 'players/find/{}/{}'.format(name, region.name)
+            path = url_base + 'players/find/{}/{}'.format(name, region.short)
         elif id is not None and name is None and region is None:
             path = url_base + 'players/{}'.format(id)
         else:
@@ -227,7 +227,40 @@ class Player(object):
         return response.json()
 
     # Compare
-    #def compare_stats(self, player, game):
+    def compare_stats(self, player, game):
+        path = url_base + 'compare/{}/{}/{}/stats'.format(game.id, self.id, player.id)
+        response = session.get(path)
+        return response.json()
+
+    def compare_winrates(self, player, game):
+        path = url_base + 'compare/{}/{}/{}/winrates'.format(game.id, self.id, player.id)
+        response = session.get(path)
+        return response.json()
+
+    def compare_results(self, player, game):
+        path = url_base + 'compare/{}/{}/{}/results'.format(game.id, self.id, player.id)
+        response = session.get(path)
+        return response.json()
+
+    def compare_rankings(self, player, game):
+        path = url_base + 'compare/{}/{}/{}/rankings'.format(game.id, self.id, player.id)
+        response = session.get(path)
+        return response.json()
+
+    def compare_videos(self, player, game):
+        path = url_base + 'compare/{}/{}/{}/videos'.format(game.id, self.id, player.id)
+        response = session.get(path)
+        return response.json()
+
+    def compare_characters(self, player, game):
+        path = url_base + 'compare/{}/{}/{}/characters'.format(game.id, self.id, player.id)
+        response = session.get(path)
+        return response.json()
+
+    def compare_matches(self, player, game):
+        path = url_base + 'compare/{}/{}/{}/matches'.format(game.id, self.id, player.id)
+        response = session.get(path)
+        return response.json()
 
 
 class Region(object):
