@@ -152,14 +152,14 @@ class Player(object):
         if region is None:
             path = url_base + 'players'
         else:
-            path = url_base + 'players/byregion/{}'.format(region)
+            path = url_base + 'players/byregion/{}'.format(region.name)
         response = session.get(path)
         return response.json()
 
     @staticmethod
     def get_player(name=None, region=None, id=None):
         if id is None and name is not None and region is not None:
-            path = url_base + 'players/find/{}/{}'.format(name, region)
+            path = url_base + 'players/find/{}/{}'.format(name, region.name)
         elif id is not None and name is None and region is None:
             path = url_base + 'players/{}'.format(id)
         else:
@@ -225,3 +225,32 @@ class Player(object):
         path = url_base + 'players/{}/winrates/{}'.format(self.id, game.id)
         response = session.get(path)
         return response.json()
+
+    # Compare
+    #def compare_stats(self, player, game):
+
+
+class Region(object):
+    def __init__(self, id):
+        self.id = id
+        self.name = ''
+        self.short = ''
+        self.update()
+
+    @staticmethod
+    def get_regions():
+        path = url_base + 'regions'
+        response = session.get(path)
+        return response.json()
+
+    @staticmethod
+    def get_region(id):
+        path = url_base + 'regions/{}'.format(id)
+        response = session.get(path)
+        return response.json()
+
+    def update(self):
+        path = url_base + 'regions/{}'.format(self.id)
+        response = session.get(path).json()
+        self.name = response['Name']
+        self.short = response['Short']
