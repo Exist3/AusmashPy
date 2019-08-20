@@ -1,9 +1,10 @@
+#!/usr/bin/env python3
 import requests
 from dotenv import load_dotenv
 import os
 
 load_dotenv()
-API_KEY = os.environ.get("API_KEY")
+API_KEY = os.environ.get("AUSMASH_API_KEY")
 
 
 class APIKeyMissingError(Exception):
