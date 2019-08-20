@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from session_init import session
 
 url_base = 'https://api.ausmash.com.au/'

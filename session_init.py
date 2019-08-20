@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 import requests
-from dotenv import load_dotenv
+#from dotenv import load_dotenv
 import os
 
-load_dotenv()
+#load_dotenv()
 API_KEY = os.environ.get("AUSMASH_API_KEY")
 
 
